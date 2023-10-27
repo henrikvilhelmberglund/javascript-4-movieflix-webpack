@@ -5,6 +5,7 @@ const showMovieDetails = async () => {
   const movieId = window.location.search.split('=')[1];
   const movie = await fetchData(`movie/${movieId}`);
   const div = document.createElement('div');
+  console.log(div)
 
   div.innerHTML = `
     <div class="details-top">      
