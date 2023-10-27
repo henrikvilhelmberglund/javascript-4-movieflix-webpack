@@ -1,0 +1,22 @@
+{
+  "name": "movieflix",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo hur vi använder Webpack i JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch --update --style=expanded src/assets/scss:src/assets/css",
+    "build": "webpack build"
+  },
+  "author": "Michael Gustavsson",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "sass": "^1.69.4",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
