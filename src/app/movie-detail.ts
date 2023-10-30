@@ -1,9 +1,9 @@
-import { fetchData } from './utils/https.js';
+import { fetchData } from './utils/https';
 import "./assets/scss/main.scss";
 
 const showMovieDetails = async () => {
   const movieId = window.location.search.split('=')[1];
-  const movie = await fetchData(`movie/${movieId}`);
+  const movie: Movie = await fetchData(`movie/${movieId}`);
   const div = document.createElement('div');
   console.log(div)
 
@@ -20,17 +20,17 @@ const showMovieDetails = async () => {
         <p>${movie.overview}</p>
         <h5>Genre</h5>
         <ul>
-          ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
+          ${movie.genres.map((genre: Genre) => `<li>${genre.name}</li>`).join('')}
         </ul>
         <p class="text-muted">Längd ${Math.floor(movie.runtime / 60)} tim ${movie.runtime % 60} min</p>
       </div>
     </div>
   `;
 
-  document.querySelector('#details').appendChild(div);
+  document.querySelector('#details')!.appendChild(div);
 
   const overlayDiv = document.createElement('div');
-  overlayDiv.style.backgroundImage = movie.backdrop_path ? `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` : null;
+  overlayDiv.style.backgroundImage = movie.backdrop_path ? `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` : "none";
   overlayDiv.style.backgroundSize = 'cover';
   overlayDiv.style.backgroundPosition = 'center';
   overlayDiv.style.backgroundRepeat = 'no-repeat';
@@ -42,7 +42,7 @@ const showMovieDetails = async () => {
   overlayDiv.style.zIndex = '-1';
   overlayDiv.style.opacity = '0.4';
 
-  document.querySelector('#details').appendChild(overlayDiv);
+  document.querySelector('#details')!.appendChild(overlayDiv);
 };
 
 showMovieDetails();

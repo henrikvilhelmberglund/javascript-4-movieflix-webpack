@@ -1,23 +1,23 @@
-import { fetchData } from "./utils/https.js";
+import { fetchData } from "./utils/https";
 import "./assets/scss/main.scss";
 
-const pageNumber = document.querySelector("#pageNo");
-const pages = document.querySelector("#pages");
+const pageNumber = document.querySelector("#pageNo") as HTMLSpanElement;
+const pages = document.querySelector("#pages") as HTMLSpanElement;
 let criteria = "";
 
 document
-  .querySelector("#gotoFirst")
+  .querySelector("#gotoFirst")!
   .addEventListener("click", onGotoFirstPageHandler);
 document
-  .querySelector("#gotoPrevious")
+  .querySelector("#gotoPrevious")!
   .addEventListener("click", onGotoPrevHandler);
 document
-  .querySelector("#gotoNext")
+  .querySelector("#gotoNext")!
   .addEventListener("click", onGotoNextPageHandler);
 document
-  .querySelector("#gotoLast")
+  .querySelector("#gotoLast")!
   .addEventListener("click", onGotoLastPageHandler);
-document.querySelector("#searchForm").addEventListener("submit", onSearch);
+document.querySelector("#searchForm")!.addEventListener("submit", onSearch);
 
 let result;
 
@@ -32,12 +32,12 @@ const listPopularMovies = async (page = 1) => {
   displayPagination(result);
 };
 
-const displayPagination = (data) => {
+const displayPagination = (data: FetchResult) => {
   const pages = data.total_pages > 500 ? 500 : data.total_pages;
-  const currentPage = document.querySelector("#pageNo");
-  const numOfPages = document.querySelector("#pages");
-  currentPage.innerHTML = data.page;
-  numOfPages.innerHTML = pages;
+  const currentPage = document.querySelector("#pageNo") as HTMLSpanElement;
+  const numOfPages = document.querySelector("#pages") as HTMLSpanElement;
+  currentPage.innerHTML = `${data.page}`;
+  numOfPages.innerHTML = `${pages}`;
 };
 
 function onGotoFirstPageHandler() {
@@ -61,8 +61,8 @@ function onGotoLastPageHandler() {
   listPopularMovies(+pages.innerHTML);
 }
 
-function displayMovies(movies) {
-  document.querySelector("#top-movies").innerHTML = "";
+function displayMovies(movies: Movie[]) {
+  document.querySelector("#top-movies")!.innerHTML = "";
   movies.forEach((movie) => {
     const div = document.createElement("div");
     div.classList.add("card");
@@ -83,15 +83,15 @@ function displayMovies(movies) {
       </div>
     `;
 
-    document.querySelector("#top-movies").appendChild(div);
+    document.querySelector("#top-movies")!.appendChild(div);
   });
 }
 
-async function onSearch(e) {
+async function onSearch(e: Event) {
   e.preventDefault();
 
   let page = 1;
-  criteria = document.querySelector("#searchInput").value;
+  criteria = document.querySelector<HTMLInputElement>("#searchInput")!.value;
 
   if (criteria === "") {
     listPopularMovies();
