@@ -1,4 +1,4 @@
-import { state } from './state.js';
+import { state } from './state';
 
 export const fetchData = async (endpoint: string, page = 1, criteria: string | undefined = undefined) => {
   const API_KEY = state.api.key;

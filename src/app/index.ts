@@ -1,4 +1,4 @@
-import { fetchData } from "./utils/https.js";
+import { fetchData } from "./utils/https";
 import "./assets/scss/main.scss";
 
 const pageNumber = document.querySelector("#pageNo") as HTMLSpanElement;
