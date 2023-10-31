@@ -1,3 +1,5 @@
+import { Movie } from "./movie";
+
 export interface FetchResult {
   page: number;
   results: Movie[];
