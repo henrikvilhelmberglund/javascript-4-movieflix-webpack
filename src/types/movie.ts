@@ -1,4 +1,4 @@
-interface Movie {
+export interface Movie {
   poster_path: string;
   title: string;
   release_date: string;
@@ -10,7 +10,7 @@ interface Movie {
   backdrop_path: string;
 }
 
-type Genre = {
+export type Genre = {
   id: number;
   name: string;
 };

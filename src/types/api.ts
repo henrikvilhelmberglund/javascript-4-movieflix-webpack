@@ -1,6 +1,6 @@
-interface FetchResult {
+export interface FetchResult {
   page: number;
-  results: [object];
+  results: Movie[];
   total_pages: number;
   total_results: number;
 }
