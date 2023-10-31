@@ -1,5 +1,6 @@
 import { fetchData } from './utils/https';
 import "./assets/scss/main.scss";
+import { Genre, Movie } from '../types/movie';
 
 const showMovieDetails = async () => {
   const movieId = window.location.search.split('=')[1];

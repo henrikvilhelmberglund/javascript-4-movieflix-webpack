@@ -1,5 +1,7 @@
 import { fetchData } from "./utils/https";
 import "./assets/scss/main.scss";
+import { FetchResult } from "../types/api";
+import { Movie } from "../types/movie";
 
 const pageNumber = document.querySelector("#pageNo") as HTMLSpanElement;
 const pages = document.querySelector("#pages") as HTMLSpanElement;
