@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  devtool: "source-map",
   mode: "production",
   resolve: {
     extensions: ['.ts', '.js'],
@@ -15,6 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name]-[contenthash].js",
     clean: true,
+    devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]'  // map to source with absolute file path not webpack:// protocol
   },
   devServer: {
     static: {
