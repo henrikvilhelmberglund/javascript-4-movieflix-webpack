@@ -1,4 +1,3 @@
-import { fetchData } from "./utils/https";
 import "./assets/scss/main.scss";
 import { FetchResult } from "../types/api";
 import { Movie } from "../types/movie";
@@ -24,14 +23,19 @@ document.querySelector("#searchForm")!.addEventListener("submit", onSearch);
 let result;
 
 const listPopularMovies = async (page = 1) => {
+  let data;
   if (criteria && criteria.length > 0) {
-    result = await fetchData("search/movie", page, criteria);
+    // result = await fetch("localhost:3001/api/v1/movies/search", page, criteria);
+    result = await fetch("http://localhost:3001/api/v1/movies/search");
+    data = await result.json();
   } else {
-    result = await fetchData("movie/popular", page);
+    // result = await fetch("localhost:3001/api/v1/movie/list", page);
+    result = await fetch("http://localhost:3001/api/v1/movies/list");
+    data = await result.json();
   }
 
-  displayMovies(result.results);
-  displayPagination(result);
+  displayMovies(data.result.results);
+  displayPagination(data.result);
 };
 
 const displayPagination = (data: FetchResult) => {
@@ -100,10 +104,12 @@ async function onSearch(e: Event) {
     return;
   }
 
-  const result = await fetchData("search/movie", page, criteria);
+  // const result = await fetch("localhost:3001/api/v1/movies/search", page, criteria);
+  const result = await fetch(`http://localhost:3001/api/v1/movies/search/${criteria}`);
+  let data = await result.json();
 
-  displayPagination(result);
-  displayMovies(result.results);
+  displayPagination(data.result);
+  displayMovies(data.result.results);
 }
 
 listPopularMovies();
