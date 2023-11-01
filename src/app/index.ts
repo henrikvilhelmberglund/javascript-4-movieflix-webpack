@@ -26,7 +26,7 @@ const listPopularMovies = async (page = 1) => {
   let data;
   if (criteria && criteria.length > 0) {
     // result = await fetch("localhost:3001/api/v1/movies/search", page, criteria);
-    result = await fetch(`http://localhost:3001/api/v1/movies/search?page=${page}`);
+    result = await fetch(`http://localhost:3001/api/v1/movies/search/${criteria}?page=${page}`);
     data = await result.json();
   } else {
     // result = await fetch("localhost:3001/api/v1/movie/list", page);
@@ -105,7 +105,7 @@ async function onSearch(e: Event) {
   }
 
   // const result = await fetch("localhost:3001/api/v1/movies/search", page, criteria);
-  const result = await fetch(`http://localhost:3001/api/v1/movies/search/${criteria}`);
+  const result = await fetch(`http://localhost:3001/api/v1/movies/search/${criteria}?page=1`);
   let data = await result.json();
 
   displayPagination(data.result);
