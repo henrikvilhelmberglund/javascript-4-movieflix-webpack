@@ -3,9 +3,9 @@ import { Genre, Movie } from "../types/movie";
 
 const showMovieDetails = async () => {
   const movieId = window.location.search.split("=")[1];
-  const result = await fetch(`http://localhost:3001/api/v1/movie/${movieId}`);
+  const result = await fetch(`http://localhost:3001/api/v1/movies/${movieId}`);
   const data = await result.json();
-  const movie = data.result;
+  const movie = data.data;
   const div = document.createElement("div");
   console.log(div);
 

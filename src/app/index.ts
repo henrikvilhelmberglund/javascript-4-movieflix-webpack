@@ -34,8 +34,8 @@ const listPopularMovies = async (page = 1) => {
     data = await result.json();
   }
 
-  displayMovies(data.result.results);
-  displayPagination(data.result);
+  displayMovies(data.data.results);
+  displayPagination(data.data);
 };
 
 const displayPagination = (data: FetchResult) => {
@@ -108,8 +108,8 @@ async function onSearch(e: Event) {
   const result = await fetch(`http://localhost:3001/api/v1/movies/search/${criteria}?page=1`);
   let data = await result.json();
 
-  displayPagination(data.result);
-  displayMovies(data.result.results);
+  displayPagination(data.data);
+  displayMovies(data.data.results);
 }
 
 listPopularMovies();
